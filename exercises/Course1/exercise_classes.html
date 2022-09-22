@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // Creati o clasa numita "Cars", care sa contina atributele "name" si "speed" si metodele
+        // "accelerate" si "brake". Metoda accelerate mareste valoare lui "speed" cu 10,
+        // iar metoda "brake" micsoreaza viteza lui "speed" cu 10.
+        // Instantiati(creati) doua masini cu nume si valori ale vitezei diferite. Pentru 
+        // fiecare masina, apelati cate o metoda, iar apoi afisati la consola valoare rezultata
+        // a vitezei.s
+
+        class Car {
+
+            constructor(name, speed) {
+                this.name = name;
+                this.speed = speed;
+            }
+
+            accelerate() {
+                this.speed += 10;
+            }
+
+            brake() {
+                this.speed -= 10;
+            }
+
+        }
+
+        const carToyota = new Car('Toyota CHR', 180);
+        const carPeugeot = new Car('Peuget 308', 160)
+
+        carToyota.accelerate();
+        carPeugeot.brake();
+
+        console.log(carToyota.speed);
+        console.log(carPeugeot.speed);
+
+    </script>
+</body>
+</html>
