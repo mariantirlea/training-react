@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // Se dau urmatoarele obiecte:
+
+        const film = {
+            name: 'Arriba abajo',
+            year: 2019,
+            director: 'Fernandinho Navas'
+        }
+        
+        const filmDetails = {
+            oscarNomination: true,
+            rating: 8.9
+        }
+        
+        // 1. Folosind OBJECT DESTRUCURING si TEMPLATE LITERALS, mai intai extrageti numele
+        // si anul din obiectul "film", apoi construiti un mesaj de forma "Filmul {numeFilm}
+        // a aparul in anul {anFilm}"
+        
+        const {name: numeFilm, year: anFilm} = film;
+
+        console.log(`Filmul ${numeFilm} a aparut in anul ${anFilm}`);
+
+        // 2. Folosind SPREAD OPERATOR, creati un nou obiect, care sa contina toate cheile
+        // si valorile din primul obiect, dar si toate cheile si valorile din cel de-al doilea
+
+        const fullFilm = {...film, ...filmDetails};
+
+        console.log(fullFilm);
+
+    </script>
+</body>
+</html>
