@@ -7,6 +7,7 @@ import UserList from "./components/UserList";
 import UserForm from "./components/UserForm";
 import { Component } from "react";
 import Badge from 'react-bootstrap/Badge';
+import PostList from "./components/PostList";
 
 class App extends Component {
 
@@ -15,7 +16,8 @@ class App extends Component {
     textColor: "#000000",
     counter: 10,
     showCounter: true,
-    users: []
+    users: [],
+    usersMaintActive: true
   };
 
   applyColor(e) {
@@ -28,6 +30,13 @@ class App extends Component {
 
     this.setState({textColor: e.target.value});
 
+  }
+
+  togglePage(e){
+    this.setState({usersMaintActive: !this.state.usersMaintActive});
+
+    e.stopPropagation();
+    e.preventDefault();
   }
 
   increment = e => {
@@ -59,7 +68,20 @@ class App extends Component {
     // console.log(this.state.users);
 
     return (
-      <div className="container" style={{ marginTop: 50, color: this.state.textColor }}>
+      <>
+
+      <nav className="navbar sticky-top navbar-dark  bg-dark justify-content-between">
+
+        <form className="form-inline">
+            <button className={"btn btn-outline-light ml-2" + (this.state.usersMaintActive ? ' active': '')} style={{marginLeft: '10px'}} onClick={(e) => this.togglePage(e)}>Utilizatori</button>
+            <button className={"btn btn-outline-light ml-2" + (!this.state.usersMaintActive ? ' active': '')} style={{marginLeft: '20px'}} onClick={(e) => this.togglePage(e)}>Postari</button>
+        </form>
+        
+      </nav>
+
+      {!this.state.usersMaintActive && <div className="container" style={{ marginTop: 50}}><PostList /></div>}
+
+      {this.state.usersMaintActive && <div className="container" style={{ marginTop: 50, color: this.state.textColor }}>
         <div className="row">
           <div className="col-sm-5">
             <div style={{ backgroundColor: this.state.color }}>
@@ -119,7 +141,9 @@ class App extends Component {
 
       <br/>
 
-      </div>
+      </div>}
+
+    </>
     );
   }
 }
