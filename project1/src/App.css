@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.special-box img {
+  opacity: 0.2;
+  transition: opacity 0.3s;
+}
+
+.special-box:hover > img  {
+  opacity: 1 !important;
+  transition: opacity 0.3s;
+}
+
+.special-box:hover .card-img-overlay  {
+  opacity: 0.2;
+  transition: opacity 0.3s;
+}
+
+.special-box {
+  overflow: hidden;
+}

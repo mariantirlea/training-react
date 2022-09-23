@@ -12,6 +12,7 @@ class App extends Component {
 
   state = {
     color: "#f6f6f6",
+    textColor: "#000000",
     counter: 10,
     showCounter: true,
     users: []
@@ -20,6 +21,12 @@ class App extends Component {
   applyColor(e) {
 
     this.setState({color: e.target.value});
+
+  }
+
+  applyTextColor(e) {
+
+    this.setState({textColor: e.target.value});
 
   }
 
@@ -39,6 +46,8 @@ class App extends Component {
           name: current.name,
           email: current.email,
           isVip: index === 2,
+          image: ("https://api.lorem.space/image/face?w=500&h=300&random" + current.id),
+          salary: Math.floor(Math.random() * 20000) + 1
         }
       })}))
       .catch((err) => console.error(err))
@@ -47,10 +56,10 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.users);
+    // console.log(this.state.users);
 
     return (
-      <div className="container" style={{ marginTop: 50 }}>
+      <div className="container" style={{ marginTop: 50, color: this.state.textColor }}>
         <div className="row">
           <div className="col-sm-5">
             <div style={{ backgroundColor: this.state.color }}>
@@ -58,7 +67,7 @@ class App extends Component {
             </div>
           </div>
           <div className="col-sm-7">
-            <UserList users={this.state.users} />
+            <div className="container"><div className="row">{this.state.users.length !== 0 ? <UserList users={this.state.users} /> : <h4>Incarcare utilizatori...</h4> }</div></div>
           </div>
         </div>
 
@@ -66,9 +75,11 @@ class App extends Component {
 
         <div className="row">
           <div className="col" style={{ textAlign: "left" }}>
-            <h4>Selecteaza o culoare</h4>
+            <h4>Selecteaza culorile (fundal si text)</h4>
             <input type="color" value={this.state.color} onChange={e => this.applyColor(e)} />
             <p>{this.state.color}</p>
+            <input type="color" value={this.state.textColor} onChange={e => this.applyTextColor(e)} />
+            <p>{this.state.textColor}</p>
           </div>
           <div className="col" style={{ textAlign: "left" }}>
             <h4>Task incrementare numar <Badge bg="secondary">{this.state.counter}</Badge></h4>

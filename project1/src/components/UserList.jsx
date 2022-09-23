@@ -36,7 +36,7 @@ class UserList extends Component {
         {/* {this.state.users.map((user, index) => <UserItem key={index} name={user.name} email={user.email} isVip={user.isVip} />)} */}
 
         
-        {users.map((user, index) => <UserItem key={user.id} user={user} />)}
+        {users.map((user, index) => <div key={user.id} className="col-12 col-md-6 mb-4"><UserItem user={user} /></div>)}
       
 
       </>
