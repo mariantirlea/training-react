@@ -2,6 +2,8 @@ import { Component } from "react";
 import UserItem from "./UserItem";
 import UserItemPlaceholder from "./UserItemPlaceholder";
 import AddNewUserDialog from "./AddNewUserDialog";
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 
 class UserList extends Component {
     
@@ -12,7 +14,9 @@ class UserList extends Component {
           users: [],
           isLoading: false,
           placeholderSizes: [],
-          isAddNewUser: false
+          isAddNewUser: false,
+          showDeletedUserToast: false,
+          deletedUser: ''
         }
     }
 
@@ -72,7 +76,11 @@ class UserList extends Component {
     }
 
     onDeleteUser(userId){
-      this.setState({users: this.state.users.filter((user) => user.id !== userId)})
+      this.setState({showDeletedUserToast: true, users: this.state.users.filter((user) => user.id !== userId), deletedUser: this.state.users.filter((user) => user.id === userId)[0].name})
+    }
+
+    setShowDeletedUserToast(value){
+      this.setState({showDeletedUserToast: value});
     }
 
   render() {
@@ -103,6 +111,13 @@ class UserList extends Component {
 
         {this.state.isAddNewUser && <AddNewUserDialog onCancel={() => this.setState({isAddNewUser: false})} onNewUser={(user) => this.onNewUser(user)}/>}
         
+        {this.state.showDeletedUserToast && <ToastContainer position="bottom-end" className="p-3" containerPosition="fixed">
+          <Toast onClose={() => this.setShowDeletedUserToast(false)} show={this.state.showDeletedUserToast} delay={1500} autohide>
+            <Toast.Body>Utilizatorul <span className="fw-bold">{this.state.deletedUser}</span> a fost șters!</Toast.Body>
+          </Toast>
+        </ToastContainer>}
+        
+
       </div>
     );
 
