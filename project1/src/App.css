@@ -48,10 +48,38 @@
 }
 
 .special-box:hover .card-img-overlay  {
-  opacity: 0.2;
+  /* opacity: 0.2; */
   transition: opacity 0.3s;
 }
 
 .special-box {
   overflow: hidden;
+}
+
+.special-box:hover span.overlay  {
+  transition: color 0.1s ease-in;
+  transition: background-color 0.1s ease-in;
+  transition: padding 0.1s ease-in;
+
+  background-color: #ffffff8a;
+  padding: 5px 10px;
+  color: #212529;
+}
+
+.special-box span.overlay  {
+  transition: color 0.1s ease-out;
+  transition: background-color 0.1s ease-out;
+  transition: padding 0.1s ease-out;
+
+}
+
+.btn-delete {
+  right: 10px;
+  bottom: 10px;
+  display: none;
+
+}
+
+.special-box:hover .btn-delete  {
+  display: inline;
 }

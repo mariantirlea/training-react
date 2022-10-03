@@ -1,85 +1,50 @@
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./App.css";
-import TestComponentIf from "./components/learning/TestComponentIf";
-import TestComponentMap from "./components/learning/TestComponentMap";
-import TestComponentLifecycle from "./components/learning/TestComponentLifecycle";
-import UserList from "./components/UserList";
-import UserForm from "./components/UserForm";
+
 import { Component } from "react";
-import Badge from 'react-bootstrap/Badge';
-import PostList from "./components/PostList";
+import Navbar from "./components/navigation/Navbar";
+import SettingsRightPanel from "./components/navigation/SettingsRightPanel";
+import UserList from "./components/pages/users/UserList";
+import PostList from "./components/pages/posts/PostList";
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle';
 
 class App extends Component {
 
-  state = {
-    color: "#f6f6f6",
-    textColor: "#000000",
-    counter: 10,
-    showCounter: true,
-    users: [],
-    usersMaintActive: true
-  };
+  constructor(){
+    super();
 
-  applyColor(e) {
-
-    this.setState({color: e.target.value});
-
+    this.state = {
+      navBarStatus: {isUsersPageActive: true, isPostsPageActive: false}
+    }
   }
 
-  applyTextColor(e) {
-
-    this.setState({textColor: e.target.value});
-
+  onNavBarChange = (status) => {
+    this.setState({navBarStatus: status});
   }
 
-  togglePage(e){
-    this.setState({usersMaintActive: !this.state.usersMaintActive});
-
-    e.stopPropagation();
-    e.preventDefault();
+  initTooltips() {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
   }
 
-  increment = e => {
-
-    this.setState({counter: this.state.counter + 1});
-
-  }
-
-  componentDidMount(){
-
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((res) => res.json())
-      .then((data) => this.setState({users: data.map((current, index) => {
-        return {
-          id: current.id,
-          name: current.name,
-          email: current.email,
-          isVip: index === 2,
-          image: ("https://api.lorem.space/image/face?w=500&h=300&random" + current.id),
-          salary: Math.floor(Math.random() * 20000) + 1
-        }
-      })}))
-      .catch((err) => console.error(err))
-      .finally(() => console.log('Finally...'));
-
+  componentDidMount() {
+    this.initTooltips();
   }
 
   render() {
-    // console.log(this.state.users);
 
     return (
       <>
 
-      <nav className="navbar sticky-top navbar-dark  bg-dark justify-content-between">
+      <Navbar onNavBarChange={(status) => this.onNavBarChange(status)}/>
+      <SettingsRightPanel/>
 
-        <form className="form-inline">
-            <button className={"btn btn-outline-light ml-2" + (this.state.usersMaintActive ? ' active': '')} style={{marginLeft: '10px'}} onClick={(e) => this.togglePage(e)}>Utilizatori</button>
-            <button className={"btn btn-outline-light ml-2" + (!this.state.usersMaintActive ? ' active': '')} style={{marginLeft: '20px'}} onClick={(e) => this.togglePage(e)}>Postari</button>
-        </form>
-        
-      </nav>
+      {this.state.navBarStatus.isUsersPageActive && <UserList />}
+      {this.state.navBarStatus.isPostsPageActive && <PostList />}
 
-      {!this.state.usersMaintActive && <div className="container" style={{ marginTop: 50}}><PostList /></div>}
+      {/* {!this.state.usersMaintActive && <div className="container" style={{ marginTop: 50}}><PostList /></div>}
 
       {this.state.usersMaintActive && <div className="container" style={{ marginTop: 50, color: this.state.textColor }}>
         <div className="row">
@@ -91,9 +56,9 @@ class App extends Component {
           <div className="col-sm-7">
             <div className="container"><div className="row">{this.state.users.length !== 0 ? <UserList users={this.state.users} /> : <h4>Incarcare utilizatori...</h4> }</div></div>
           </div>
-        </div>
+        </div> */}
 
-        <hr />
+        {/* <hr />
 
         <div className="row">
           <div className="col" style={{ textAlign: "left" }}>
@@ -139,9 +104,9 @@ class App extends Component {
 
       </div>
 
-      <br/>
-
-      </div>}
+      <br/> */}
+{/* 
+      </div>} */}
 
     </>
     );
