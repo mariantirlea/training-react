@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import Badge from 'react-bootstrap/Badge';
 import { Component } from "react";
+import DeleteUser from './DeleteUser';
 
 class UserItem extends Component {
     // function UserItem({name, email, a, b}) {
@@ -10,23 +11,22 @@ class UserItem extends Component {
         super(props);
 
         this.state = {
-            loaded: false
+            loaded: false,
+            isDeleteUser: false
         }
     }
 
+    onDeleteUser() {
+        this.setState({isDeleteUser: false});
+  
+        this.props.onDeleteUser(this.props.user.id);
+    }
 
     render() {
         const {id, name, image, salary, email, isVip, ...rest} = this.props.user;
 
         return (
-            // <div className="card" style={{marginBottom: 20}}>
-            //     <div className="card-body">
-            //         <img src={`https://api.lorem.space/image/face?w=150&h=150&random=${id}`}/>
-            //         <h4 className="card-title">{name}{isVip && <Badge style={{marginLeft: '10px'}} bg="warning">VIP</Badge>}</h4>
-            //         <hr style={{color: '#c6c6c6'}}/>
-            //         <p className="card-text">{email}</p>
-            //     </div>
-            // </div>
+
             <div className="col-12 col-md-4 mb-4">      
                 <div className="card bg-dark text-white special-box">
                     
@@ -52,9 +52,12 @@ class UserItem extends Component {
                     <p className="card-text"><span className='overlay'>{email}</span></p>
                     <p className="card-text" style={{textAlign: 'right', fontWeight: 'bold'}}><span className='overlay'>{salary} RON</span></p>
                     
-                    <button className='btn btn-danger btn-delete position-absolute'>Sterge</button>
+                    <button className='btn btn-danger btn-delete position-absolute' onClick={() => this.setState({isDeleteUser: true})}>Șterge</button>
                     </div>
                 </div>
+
+                {this.state.isDeleteUser && <DeleteUser onCancel={() => this.setState({isDeleteUser: false})} onDeleteUser={() => this.onDeleteUser()}/>}
+
             </div>
         );
     }      

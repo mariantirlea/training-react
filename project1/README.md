@@ -5,7 +5,7 @@
 
 - ~~upload to github~~
 
-- navbar with links to two pages: users and posts + settings button
+- ~~navbar with links to two pages: users and posts + settings button~~
 
 
 - settings modal
@@ -15,10 +15,11 @@
     - define if form is cleared after insert
 
 
-- users page
-    - add new user in a modal view
-    - validate if name is unique
-    - remove all exercises
+- ~~users page~~
+    - ~~add new user in a modal view~~
+    - ~~validate if name is not empty and email is valid~~
+    - ~~remove all exercises~~
+    - ~~delete user with confirmation~~
 
 
 Low prio:

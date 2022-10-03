@@ -55,7 +55,7 @@ class UserList extends Component {
       
         const oldUsers = oldState.users;
   
-        user.id = Math.max(...oldUsers.map(user => user.id)) + 1;
+        user.id = Math.max([],...oldUsers.map(user => user.id)) + 1;
         user.image = "https://api.lorem.space/image/face?w=400&h=400&random" + user.id;
         user.salary = 10000;
   
@@ -69,6 +69,10 @@ class UserList extends Component {
           return 0;
         })};
       });
+    }
+
+    onDeleteUser(userId){
+      this.setState({users: this.state.users.filter((user) => user.id !== userId)})
     }
 
   render() {
@@ -89,7 +93,7 @@ class UserList extends Component {
             })}
 
           {!this.state.isLoading &&
-            this.state.users.map((user, index) => <UserItem key={user.id} user={user} />)}
+            this.state.users.map((user, index) => <UserItem onDeleteUser={(userId) => this.onDeleteUser(userId)} key={user.id} user={user} />)}
 
           {!this.state.isLoading && this.state.users.length === 0 && (
             <h4>Nu există nimic de afișat!</h4>
