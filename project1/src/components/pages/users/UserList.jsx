@@ -38,7 +38,7 @@ class UserList extends Component {
           }
         })}))
         .catch((err) => console.error(err))
-        .finally(() => this.setState({ isLoading: false }));
+        .finally(() => setTimeout(() => this.setState({ isLoading: false }), this.props.settings.isDemo ? 3000 : 0));
   
     }
 
@@ -60,7 +60,7 @@ class UserList extends Component {
         const oldUsers = oldState.users;
   
         user.id = Math.max([],...oldUsers.map(user => user.id)) + 1;
-        user.image = "https://api.lorem.space/image/face?w=400&h=400&random" + user.id;
+        user.image = "https://api.lorem.space/image/face?w=400&h=400&random=" + Date.now();
         user.salary = 10000;
   
         return {users: [...oldUsers, user].sort((left, right) => {
@@ -109,7 +109,7 @@ class UserList extends Component {
 
         </div>
 
-        {this.state.isAddNewUser && <AddNewUserDialog onCancel={() => this.setState({isAddNewUser: false})} onNewUser={(user) => this.onNewUser(user)}/>}
+        {this.state.isAddNewUser && <AddNewUserDialog isDemo={this.props.settings.isDemo} onCancel={() => this.setState({isAddNewUser: false})} onNewUser={(user) => this.onNewUser(user)}/>}
         
         {this.state.showDeletedUserToast && <ToastContainer position="bottom-end" className="p-3" containerPosition="fixed">
           <Toast onClose={() => this.setShowDeletedUserToast(false)} show={this.state.showDeletedUserToast} delay={1500} autohide>

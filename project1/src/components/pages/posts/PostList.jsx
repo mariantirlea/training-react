@@ -42,7 +42,7 @@ class PostList extends Component {
         })
       )
       .catch((err) => console.error(err))
-      .finally(() => this.setState({ loadingPosts: false }));
+      .finally(() => setTimeout(() => this.setState({ loadingPosts: false }), this.props.settings.isDemo ? 3000 : 0));
   }
 
   capitalizeFirst(str) {

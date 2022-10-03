@@ -8,11 +8,10 @@
 - ~~navbar with links to two pages: users and posts + settings button~~
 
 
-- settings modal
-    - color for bg of website
-    - color for text
-    - define is form is prefilled with some values
-    - define if form is cleared after insert
+- ~~settings modal~~
+    - ~~color for bg of website~~
+    - ~~color for text~~
+    - ~~define is form is prefilled with some values (demo mode)~~
 
 
 - ~~users page~~
@@ -22,9 +21,9 @@
     - ~~delete user with confirmation~~
 
 
-Low prio:
+TODO ideas:
 
-- complete readme.md with pictures
+- add language (en + ro - default)
 
 - one simple test?
 

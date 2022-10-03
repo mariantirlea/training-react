@@ -10,8 +10,8 @@ class AddNewUserDialog extends Component {
 
     this.state = {
       validated: false,
-      name: '',
-      email: '',
+      name: this.props.isDemo ? 'Dumitrescu Ionel' : '',
+      email: this.props.isDemo ? 'ionel.dumitrescu@companie.ro' : '',
       isVip: false
     }
   }
@@ -104,7 +104,7 @@ class AddNewUserDialog extends Component {
                   type="text"
                   placeholder="Dumitrescu Ionel" autoFocus required 
                   onChange={(e) => this.handleNameChange(e)}
-                  
+                  value={this.state.name}
                 />
                 <Form.Control.Feedback type="invalid">
                   Te rugăm să introduci numele și prenumele tău
@@ -114,9 +114,10 @@ class AddNewUserDialog extends Component {
                 <Form.Label>Adresa de email</Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="nume.prenume@companie.ro"
+                  placeholder="ionel.dumitrescu@companie.ro"
                   required 
                   onChange={(e) => this.handleEmailChange(e)}
+                  value={this.state.email}
                 />
                 <Form.Control.Feedback type="invalid">
                   Te rugăm să introduci o adresă validă de email

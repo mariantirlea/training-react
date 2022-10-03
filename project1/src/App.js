@@ -16,12 +16,18 @@ class App extends Component {
     super();
 
     this.state = {
-      navBarStatus: {isUsersPageActive: true, isPostsPageActive: false}
+      navBarStatus: {isUsersPageActive: true, isPostsPageActive: false},
+      settings: {}
     }
   }
 
   onNavBarChange = (status) => {
     this.setState({navBarStatus: status});
+  }
+
+  onSettingsChange = (settings) => {
+    this.setState({settings});
+    
   }
 
   initTooltips() {
@@ -37,12 +43,11 @@ class App extends Component {
 
     return (
       <>
-
       <Navbar onNavBarChange={(status) => this.onNavBarChange(status)}/>
-      <SettingsRightPanel/>
+      <SettingsRightPanel onSettingsChange={(settings) => this.onSettingsChange(settings)}/>
 
-      {this.state.navBarStatus.isUsersPageActive && <UserList />}
-      {this.state.navBarStatus.isPostsPageActive && <PostList />}
+      {this.state.navBarStatus.isUsersPageActive && <div className="pt-3" style={{ backgroundColor: this.state.settings.bgColor }}><UserList settings={this.state.settings} /></div>}
+      {this.state.navBarStatus.isPostsPageActive && <div className="pt-3" style={{ backgroundColor: this.state.settings.bgColor, color: this.state.settings.txtColor }}><PostList settings={this.state.settings}/></div>}
 
       {/* {!this.state.usersMaintActive && <div className="container" style={{ marginTop: 50}}><PostList /></div>}
 
