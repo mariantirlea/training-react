@@ -38,7 +38,7 @@ function SettingsRightPanel({bgColor, pageTxtColor, cardsTxtColor, isDemo, chang
                 </div>
               </div>
             </div>
-            <div className="col-sm-6">
+            <div className="col-sm-6 mb-sm-0 mb-4">
               <div className="card h-100">
                 <div className="card-body">
                   <h5 className="card-title">Text cutiuțe</h5>
@@ -80,7 +80,7 @@ function SettingsRightPanel({bgColor, pageTxtColor, cardsTxtColor, isDemo, chang
           <div id="emailHelp" className="form-text">Când acesta este activat, următoarele funcționalități sunt disponibile:</div>
           <ul className="form-text">
             <li>aplicația simulează o conexiune slabă pentru a vedea cum sunt încărcate datele pe ecran</li>
-            <li>formularul de adăugare utilizator nou conține valori inițiale</li>
+            <li>formularul de adăugare utilizator nou conține valori prestabilite</li>
           </ul>
 
         </div>
