@@ -1,27 +1,9 @@
-import { Component } from "react";
 import styles from "./Navbar.module.css";
+import { NavLink } from "react-router-dom";
 
-class Navbar extends Component {
-  constructor(props) {
-    super(props);
+function Navbar(){
 
-    this.state = {
-      isUsersPageActive: true,
-      isPostsPageActive: false,
-    };
-  }
-
-  changeStateAndInform(e, newState) {
-    e.stopPropagation();
-    e.preventDefault();
-
-    this.setState(newState);
-    this.props.onNavBarChange(newState);
-  }
-
-  render() {
     return (
-      <>
         <nav
           className={
             "navbar navbar-expand-md sticky-top navbar-dark bg-dark " +
@@ -29,9 +11,13 @@ class Navbar extends Component {
           }
         >
           <div className="container-fluid">
-            <a className="navbar-brand" href="/">
-              Proiect 1
-            </a>
+
+            <NavLink
+                to="/"
+                className="navbar-brand">
+                Proiect 1
+            </NavLink>
+
             <button
               className="navbar-toggler"
               type="button"
@@ -46,41 +32,27 @@ class Navbar extends Component {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a
-                    className={
-                      "nav-link " +
-                      (this.state.isUsersPageActive ? "active " : "")
-                    }
-                    href="#"
-                    onClick={(e) =>
-                      this.changeStateAndInform(e, {
-                        isUsersPageActive: true,
-                        isPostsPageActive: false,
-                      })
-                    }
-                  >
-                    <i className="bi bi-people"></i> Utilizatori
-                  </a>
+
+                  <NavLink
+                      to="/users"
+                      className={({ isActive }) => "nav-link " + (isActive ? "active" : "")}>
+                      <i className="bi bi-people"></i> Utilizatori
+                  </NavLink>
+
                 </li>
                 <li className="nav-item">
-                  <a
-                    className={
-                      "nav-link " +
-                      (this.state.isPostsPageActive ? "active " : "")
-                    }
-                    href="#"
-                    onClick={(e) =>
-                      this.changeStateAndInform(e, {
-                        isUsersPageActive: false,
-                        isPostsPageActive: true,
-                      })
-                    }
-                  >
-                    <i className="bi bi-card-heading"></i> Postări
-                  </a>
+
+                  <NavLink
+                      to="/posts"
+                      className={({ isActive }) => "nav-link " + (isActive ? "active" : "")}>
+                      <i className="bi bi-card-heading"></i> Postări
+                  </NavLink>
+
                 </li>
+
               </ul>
               <div className="d-flex">
+
                 <button
                   className="btn btn-outline-light"
                   data-bs-toggle="offcanvas"
@@ -89,13 +61,13 @@ class Navbar extends Component {
                 >
                   <i className="bi bi-gear"></i> Setări
                 </button>
+           
               </div>
             </div>
           </div>
         </nav>
-      </>
     );
-  }
+ 
 }
 
 export default Navbar;
