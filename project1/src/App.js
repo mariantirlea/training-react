@@ -13,20 +13,12 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import NotFoundPage from "./components/pages/404/NotFoundPage";
 import AboutPage from "./components/pages/about/AboutPage";
 import Footer from './components/footer/Footer';
+import LayoutWithColors from "./components/LayoutWithColors";
 
 class App extends Component {
 
-  constructor(){
-    super();
-
-    this.state = {
-      settings: {}
-    }
-  }
-
-  onSettingsChange = (settings) => {
-    this.setState({settings});
-    
+  constructor(props) {
+    super(props);
   }
 
   initTooltips() {
@@ -43,18 +35,21 @@ class App extends Component {
     return (
       <>
       <Navbar/>
-      <SettingsRightPanel onSettingsChange={(settings) => this.onSettingsChange(settings)}/>
+      <SettingsRightPanel />
 
-      <Routes>
+      <LayoutWithColors>
+        <Routes>
 
-        <Route path="*" element={<NotFoundPage />} />
-        <Route path="/" element={<Navigate to="/users" replace />}/>
-        
-        <Route path="/users" element={<div className="pt-3" style={{ backgroundColor: this.state.settings.bgColor }}><UserList settings={this.state.settings} /></div>}/>
-        <Route path="/posts" element={<div className="pt-3" style={{ backgroundColor: this.state.settings.bgColor, color: this.state.settings.txtColor }}><PostList settings={this.state.settings} /></div>}/>
-        <Route path="/about" element={<AboutPage />}></Route>
+          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/" element={<Navigate to="/users" replace />} />
+          
+          <Route path="/users" element={<UserList />}/>
+          <Route path="/posts" element={<PostList />} />
+          <Route path="/about" element={<AboutPage />} />
 
-      </Routes>
+        </Routes>
+      </LayoutWithColors>
+
       <Footer />
       
       </>

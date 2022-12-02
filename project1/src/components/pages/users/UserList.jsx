@@ -4,6 +4,7 @@ import UserItemPlaceholder from "./UserItemPlaceholder";
 import AddNewUserDialog from "./AddNewUserDialog";
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
+import {connect} from "react-redux";
 
 class UserList extends Component {
     
@@ -38,7 +39,7 @@ class UserList extends Component {
           }
         })}))
         .catch((err) => console.error(err))
-        .finally(() => setTimeout(() => this.setState({ isLoading: false }), this.props.settings.isDemo ? 3000 : 0));
+        .finally(() => setTimeout(() => this.setState({ isLoading: false }), this.props.isDemo ? 3000 : 0));
   
     }
 
@@ -90,7 +91,7 @@ class UserList extends Component {
 
         <div className="row mb-2">
           <div className="col-md-6 offset-md-6 d-flex flex-row-reverse">
-           <button className='btn btn-outline-primary' data-bs-toggle="tooltip" data-bs-title="Adaugă un utilizator nou" onClick={() => this.handleClickAddNewUser()}><i className="bi bi-person-plus"></i></button>
+           <button className='btn btn-dark' data-bs-toggle="tooltip" data-bs-title="Adaugă un utilizator nou" onClick={() => this.handleClickAddNewUser()}><i className="bi bi-person-plus"></i></button>
           </div>
         </div>
         <div className="row">
@@ -109,10 +110,10 @@ class UserList extends Component {
 
         </div>
 
-        {this.state.isAddNewUser && <AddNewUserDialog isDemo={this.props.settings.isDemo} onCancel={() => this.setState({isAddNewUser: false})} onNewUser={(user) => this.onNewUser(user)}/>}
+        {this.state.isAddNewUser && <AddNewUserDialog isDemo={this.props.isDemo} onCancel={() => this.setState({isAddNewUser: false})} onNewUser={(user) => this.onNewUser(user)}/>}
         
         {this.state.showDeletedUserToast && <ToastContainer position="bottom-end" className="p-3" containerPosition="fixed">
-          <Toast onClose={() => this.setShowDeletedUserToast(false)} show={this.state.showDeletedUserToast} delay={1500} autohide>
+          <Toast className="bg-white text-dark" onClose={() => this.setShowDeletedUserToast(false)} show={this.state.showDeletedUserToast} delay={1500} autohide>
             <Toast.Body>Utilizatorul <span className="fw-bold">{this.state.deletedUser}</span> a fost șters!</Toast.Body>
           </Toast>
         </ToastContainer>}
@@ -124,4 +125,11 @@ class UserList extends Component {
   }
 }
 
-export default UserList;
+function mapStateToProps(store){
+
+  return {
+    isDemo: store.settings.isDemo,
+  }
+}
+
+export default connect(mapStateToProps)(UserList);

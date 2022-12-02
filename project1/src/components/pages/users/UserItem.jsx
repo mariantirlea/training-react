@@ -28,7 +28,7 @@ class UserItem extends Component {
         return (
 
             <div className="col-12 col-md-4 mb-4">      
-                <div className="card bg-dark text-white special-box">
+                <div className="card bg-dark special-box">
                     
                     {this.state.loaded ? null :
                         <div

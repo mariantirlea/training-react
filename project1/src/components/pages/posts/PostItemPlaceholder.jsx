@@ -1,7 +1,7 @@
 function PostItemPlaceholder({ sizes }) {
   return (
     <div className="col-12 col-lg-3 mb-4">
-      <div className="card h-100" aria-hidden="true">
+      <div className="card bg-dark h-100" aria-hidden="true">
         <div className="card-body">
           <h5 className="card-title placeholder-glow">
             <span className={`placeholder col-${sizes[0]} bg-dark`}></span>

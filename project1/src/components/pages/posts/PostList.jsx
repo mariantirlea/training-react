@@ -1,10 +1,11 @@
 import { Component } from "react";
 import PostItem from "./PostItem";
 import PostItemPlaceholder from "./PostItemPlaceholder";
+import {connect} from "react-redux";
 
 class PostList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       posts: [],
@@ -42,7 +43,7 @@ class PostList extends Component {
         })
       )
       .catch((err) => console.error(err))
-      .finally(() => setTimeout(() => this.setState({ loadingPosts: false }), this.props.settings.isDemo ? 3000 : 0));
+      .finally(() => setTimeout(() => this.setState({ loadingPosts: false }), this.props.isDemo ? 3000 : 0));
   }
 
   capitalizeFirst(str) {
@@ -78,4 +79,11 @@ class PostList extends Component {
   }
 }
 
-export default PostList;
+function mapStateToProps(store){
+
+  return {
+    isDemo: store.settings.isDemo,
+  }
+}
+
+export default connect(mapStateToProps)(PostList);

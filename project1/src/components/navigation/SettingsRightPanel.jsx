@@ -1,36 +1,8 @@
-import { Component } from "react";
+import {connect} from "react-redux";
+import { changeBgColor, changeDemoMode, changePageTxtColor, changeCardsTxtColor } from "../../redux/actions/settings.actions";
 
-class SettingsRightPanel extends Component {
-  constructor(props) {
-    super(props);
+function SettingsRightPanel({bgColor, pageTxtColor, cardsTxtColor, isDemo, changeBgColor, changePageTxtColor, changeCardsTxtColor, changeDemoMode}){
 
-    this.state = {
-      bgColor: "#ffffff",
-      txtColor: "#000000",
-      isDemo: false
-    }
-
-    this.updateParent();
-  }
-
-  updateParent() {
-    this.props.onSettingsChange({ ...this.state });
-  }
-
-  applyBgColor(e) {
-    this.setState({bgColor: e.target.value}, () => this.updateParent());
-  }
-
-  applyTxtColor(e) {
-
-    this.setState({txtColor: e.target.value}, () => this.updateParent());
-  }
-
-  handleDemoChange(e){
-    this.setState({isDemo: e.target.checked}, () => this.updateParent());
-  }
-
-  render() {
     return (
       <div
         className="offcanvas offcanvas-end"
@@ -51,21 +23,17 @@ class SettingsRightPanel extends Component {
           ></button>
         </div>
         <div className="offcanvas-body">
-          {/* <input type="color" value={this.state.bgColor} onChange={e => this.applyBgColor(e)} />
-          <p>{this.state.bgColor}</p>
-          <input type="color" value={this.state.txtColor} onChange={e => this.applyTxtColor(e)} />
-          <p>{this.state.txtColor}</p> */}
 
           <div className="row">
-            <div className="col-sm-6">
+            <div className="col-sm-12 mb-4">
               <div className="card h-100">
                 <div className="card-body">
                   <h5 className="card-title">Fundal</h5>
-                  <p className="card-text">{this.state.bgColor}</p>
+                  <p className="card-text">{bgColor}</p>
                   <input
                     type="color"
-                    value={this.state.bgColor}
-                    onChange={(e) => this.applyBgColor(e)}
+                    value={bgColor}
+                    onChange={(e) => changeBgColor(e.target.value)}
                   />
                 </div>
               </div>
@@ -73,16 +41,31 @@ class SettingsRightPanel extends Component {
             <div className="col-sm-6">
               <div className="card h-100">
                 <div className="card-body">
-                  <h5 className="card-title">Text (postări)</h5>
-                  <p className="card-text">{this.state.txtColor}</p>
+                  <h5 className="card-title">Text cutiuțe</h5>
+                  <p className="card-text">{cardsTxtColor}</p>
                   <input
                     type="color"
-                    value={this.state.txtColor}
-                    onChange={(e) => this.applyTxtColor(e)}
+                    value={cardsTxtColor}
+                    onChange={(e) => changeCardsTxtColor(e.target.value)}
                   />
                 </div>
               </div>
             </div>
+
+            <div className="col-sm-6">
+              <div className="card h-100">
+                <div className="card-body">
+                  <h5 className="card-title">Text pagini</h5>
+                  <p className="card-text">{pageTxtColor}</p>
+                  <input
+                    type="color"
+                    value={pageTxtColor}
+                    onChange={(e) => changePageTxtColor(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
           </div>
 
           <br/>
@@ -91,7 +74,7 @@ class SettingsRightPanel extends Component {
           </h5>
 
           <div className="form-check form-switch">
-            <input className="form-check-input" type="checkbox" id="switchDemoMode" onChange={(e) => this.handleDemoChange(e)} value={this.state.isDemo}/>
+            <input className="form-check-input" type="checkbox" id="switchDemoMode" onChange={(e) => changeDemoMode(e.target.value)} value={isDemo}/>
             <label className="form-check-label" htmlFor="switchDemoMode">Mod prezentare</label>
           </div>
           <div id="emailHelp" className="form-text">Când acesta este activat, următoarele funcționalități sunt disponibile:</div>
@@ -103,7 +86,26 @@ class SettingsRightPanel extends Component {
         </div>
       </div>
     );
+ 
+}
+
+function mapStateToProps(store){
+
+  return {
+    bgColor: store.settings.bgColor,
+    pageTxtColor: store.settings.pageTxtColor,
+    cardsTxtColor: store.settings.cardsTxtColor,
+    isDemo: store.settings.isDemo
   }
 }
 
-export default SettingsRightPanel;
+function dispatchToProps(dispatch){
+  return {
+    changeBgColor: (color) => dispatch(changeBgColor(color)),
+    changePageTxtColor: (color) => dispatch(changePageTxtColor(color)),
+    changeCardsTxtColor: (color) => dispatch(changeCardsTxtColor(color)),
+    changeDemoMode: (isDemo) => dispatch(changeDemoMode(isDemo))
+  }
+}
+
+export default connect(mapStateToProps, dispatchToProps)(SettingsRightPanel);

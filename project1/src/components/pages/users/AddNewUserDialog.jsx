@@ -138,10 +138,10 @@ class AddNewUserDialog extends Component {
                
           </Modal.Body>
           <Modal.Footer>
-            <Button type="button" variant="secondary" onClick={(e) => this.handleClose(e)}>
+            <Button type="button" variant="light" onClick={(e) => this.handleClose(e)}>
               Renunță
             </Button>
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="dark">
               Adaugă
             </Button>
           </Modal.Footer>
