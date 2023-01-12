@@ -30,15 +30,15 @@ function AboutPage(){
                                 <div className="row">
                                     <div className="col-md-4">
                                         <h5 className="pb-2">Despre mine pe scurt</h5>
-                                        <p className="fw-light">Oficial, sunt un programator de java cu peste 10 ani experienta.</p>
-                                        <p className="fw-light">Totusi, îmi place să descopăr lucruri noi în fiecare zi și nu mă concentrez doar pe un singur limbaj de programare.</p>
-                                        <p className="fw-light">Am experienta cu partea de Web, Java, baze de date, DevOps, si mai nou: testare automata.</p>
+                                        <p className="fw-light">Oficial, sunt un programator de Java cu peste 10 ani experienta.</p>
+                                        <p className="fw-light">Totuși, îmi place să descopăr lucruri noi în fiecare zi și nu mă concentrez doar pe un singur limbaj de programare.</p>
+                                        <p className="fw-light">Am experiență cu partea de Web, Java, baze de date, DevOps, și mai nou: testare automata.</p>
                                 </div>
                                     <div className="col-md-4 d-flex justify-content-center align-items-center">
                                         <style>{`
                                             .profile-picture:hover {
                                                 transition: transform 0.5s, filter 1s ease-in-out;
-                                                transform: scale(1.05) rotate(10deg);
+                                                transform: scale(1.05);
                                             }
 
                                             .profile-picture {
