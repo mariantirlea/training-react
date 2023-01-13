@@ -74,7 +74,7 @@ function SettingsRightPanel({bgColor, pageTxtColor, cardsTxtColor, isDemo, chang
           </h5>
 
           <div className="form-check form-switch">
-            <input className="form-check-input" type="checkbox" id="switchDemoMode" onChange={(e) => changeDemoMode(e.target.value)} value={isDemo}/>
+            <input className="form-check-input" type="checkbox" id="switchDemoMode" onChange={(e) => changeDemoMode(e.target.checked)} value={isDemo}/>
             <label className="form-check-label" htmlFor="switchDemoMode">Mod prezentare</label>
           </div>
           <div id="emailHelp" className="form-text">Când acesta este activat, următoarele funcționalități sunt disponibile:</div>

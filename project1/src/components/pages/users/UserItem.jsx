@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import Badge from 'react-bootstrap/Badge';
 import { Component } from "react";
 import DeleteUser from './DeleteUser';
+import {connect} from "react-redux";
+import { deleteUserById } from '../../../redux/actions/users.actions';
 
 class UserItem extends Component {
     // function UserItem({name, email, a, b}) {
@@ -19,7 +21,7 @@ class UserItem extends Component {
     onDeleteUser() {
         this.setState({isDeleteUser: false});
   
-        this.props.onDeleteUser(this.props.user.id);
+        this.props.deleteUserById(this.props.user.id);
     }
 
     render() {
@@ -71,4 +73,10 @@ UserItem.defaultProps = {
     isVip: false
 }
 
-export default UserItem
+function mapDispatchToProps(dispatch){
+    return {
+        deleteUserById: (id) => dispatch(deleteUserById(id)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(UserItem);

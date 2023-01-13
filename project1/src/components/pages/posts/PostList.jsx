@@ -2,14 +2,13 @@ import { Component } from "react";
 import PostItem from "./PostItem";
 import PostItemPlaceholder from "./PostItemPlaceholder";
 import {connect} from "react-redux";
+import { fetchPosts } from "../../../redux/actions/posts.actions";
 
 class PostList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      posts: [],
-      loadingPosts: false,
       placeholderSizes: []
     };
   }
@@ -26,41 +25,21 @@ class PostList extends Component {
   componentDidMount() {
     this.generatePlaceholderPosts();
 
-    this.setState({ loadingPosts: true });
+    this.props.fetchPosts();
 
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => res.json())
-      .then((data) =>
-        this.setState({
-          posts: data.map((current) => {
-            return {
-              id: current.id,
-              userId: current.userId,
-              title: this.capitalizeFirst(current.title),
-              body: this.capitalizeFirst(current.body),
-            };
-          }),
-        })
-      )
-      .catch((err) => console.error(err))
-      .finally(() => setTimeout(() => this.setState({ loadingPosts: false }), this.props.isDemo ? 3000 : 0));
-  }
-
-  capitalizeFirst(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
   render() {
     return (
       <div className="container mb-1">
         <div className="row">
-          {this.state.loadingPosts &&
+          {this.props.isLoading &&
             this.state.placeholderSizes.map((current, index) => {
               return <PostItemPlaceholder key={index} sizes={current} />;
             })}
 
-          {!this.state.loadingPosts &&
-            this.state.posts.map((current) => {
+          {!this.props.isLoading &&
+            this.props.posts.map((current) => {
               return (
                 <PostItem
                   key={current.id}
@@ -70,7 +49,7 @@ class PostList extends Component {
               );
             })}
 
-          {!this.state.loadingPosts && this.state.posts.length === 0 && (
+          {!this.props.isLoading && this.props.posts.length === 0 && (
             <h4>Nu există nimic de afișat!</h4>
           )}
         </div>
@@ -83,7 +62,16 @@ function mapStateToProps(store){
 
   return {
     isDemo: store.settings.isDemo,
+    posts: store.postsInfo.posts,
+    isLoading: store.spinner.isLoading
   }
 }
 
-export default connect(mapStateToProps)(PostList);
+function mapDispatchToProps(dispatch){
+  return {
+    fetchPosts: () => dispatch(fetchPosts())
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);

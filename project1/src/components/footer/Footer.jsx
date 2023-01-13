@@ -13,7 +13,7 @@ function Footer(){
                 Descriere
             </NavLink>
 
-            <p className="text-light mt-2 mb-0">Marian Tîrlea. &copy; 2022, Toate drepturile rezervate.</p>
+            <p className="text-light mt-2 mb-0">Marian Tîrlea. &copy; 2023, Toate drepturile rezervate.</p>
 
 
         </div>

@@ -2,6 +2,8 @@ import { Component } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import {connect} from "react-redux";
+import { hideNewUserDialog, newUser } from "../../../redux/actions/users.actions";
 
 class AddNewUserDialog extends Component {
 
@@ -16,14 +18,14 @@ class AddNewUserDialog extends Component {
     }
   }
 
-  handleClose(e){
+  handleClose = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     this.props.onCancel();
   }
 
-  handleSubmit(e){
+  handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -40,7 +42,8 @@ class AddNewUserDialog extends Component {
         isVip: this.state.isVip
       }
 
-      this.props.onNewUser(newUser);
+      this.props.hideNewUserDialog();
+      this.props.newUser(newUser);
     }
     
     this.setState({validated: true})
@@ -61,49 +64,19 @@ class AddNewUserDialog extends Component {
   render(){
 
     return (
-      <Modal show={true} onHide={() => this.handleClose()} backdrop="static" keyboard={false}>
-          <Form noValidate validated={this.state.validated} onSubmit={(e) => this.handleSubmit(e)}>
+      <Modal show={true} onHide={this.handleClose} backdrop="static" keyboard={false}>
+          <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
 
           <Modal.Header>
             <Modal.Title>Adăugare utilizator</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-          {/* <form>
-          <div className="form-group">
-            <label htmlFor="txtNume">Nume</label>
-            <input
-              id="txtNume"
-              className="form-control"
-              type="text"
-              placeholder="Nume si prenume"
-            />
-          </div>
-          <br />
-          <div className="form-group">
-            <label htmlFor="txtEmail">Email</label>
-            <input
-              id="txtEmail"
-              className="form-control"
-              type="email"
-              placeholder="Adresa de email"
-            />
-          </div>
-          <br />
-          <div className="form-group">
-            <label htmlFor="ckGold">Client GOLD &nbsp;</label>
-            <input id="ckGold" className="form-check-input" type="checkbox" />
-          </div>
-          <br />
-          <button type="submit" className="btn btn-dark">
-            Adauga
-          </button>
-        </form> */}
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Nume și prenume</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Dumitrescu Ionel" autoFocus required 
-                  onChange={(e) => this.handleNameChange(e)}
+                  onChange={this.handleNameChange}
                   value={this.state.name}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -116,7 +89,7 @@ class AddNewUserDialog extends Component {
                   type="email"
                   placeholder="ionel.dumitrescu@companie.ro"
                   required 
-                  onChange={(e) => this.handleEmailChange(e)}
+                  onChange={this.handleEmailChange}
                   value={this.state.email}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -127,7 +100,7 @@ class AddNewUserDialog extends Component {
                   type="switch"
                   id="custom-switch"
                   label="Sunt client VIP"
-                  onChange={(e) => this.handleVIPChange(e)}
+                  onChange={this.handleVIPChange}
                 />
 
                 <br/>
@@ -138,7 +111,7 @@ class AddNewUserDialog extends Component {
                
           </Modal.Body>
           <Modal.Footer>
-            <Button type="button" variant="light" onClick={(e) => this.handleClose(e)}>
+            <Button type="button" variant="light" onClick={this.handleClose}>
               Renunță
             </Button>
             <Button type="submit" variant="dark">
@@ -151,4 +124,11 @@ class AddNewUserDialog extends Component {
   }
 }
 
-export default AddNewUserDialog;
+function mapDispatchToProps(dispatch){
+  return {
+    hideNewUserDialog: () => dispatch(hideNewUserDialog()),
+    newUser: (data) => dispatch(newUser(data)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddNewUserDialog);
