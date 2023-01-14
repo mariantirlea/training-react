@@ -13,3 +13,59 @@ code {
 .customWidth100 {
   width: 100%;
 }
+
+.hero-banner {
+  background: #F1F6F7;
+  position: relative;
+  margin-bottom: 10px
+}
+
+@media (min-width: 991px) {
+  .hero-banner {
+      z-index:111 !important;
+  }
+}
+
+.hero-banner::before {
+  content: "";
+  display: block;
+  width: 5%;
+  height: 100%;
+  background: #0d6efd;
+  position: absolute;
+  top: 0;
+  left: 0
+}
+
+@media (min-width: 575px) {
+  .hero-banner::before {
+      width:20% !important;
+  }
+}
+
+@media (min-width: 991px) {
+  .hero-banner::before {
+      width:35% !important;
+  }
+}
+
+.hero-banner__img {
+  position: relative;
+}
+
+@media (max-width: 575px) {
+  .hero-banner__content {
+      padding-bottom:50px !important;
+  }
+}
+
+@media (min-width: 1000px) {
+  .hero-banner__content {
+      max-width:495px !important;
+  }
+}
+
+@media (min-width: 575px)
+.hero-banner::before {
+  width: 20% !important;
+}

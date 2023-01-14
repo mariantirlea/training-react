@@ -3,15 +3,33 @@ import HomeCategory from "../components/HomeCategory";
 import Layout from "../components/Layout";
 
 import products from "../utils/products.json";
-import {signInWithPopup} from 'firebase/auth';
 
 function Home(props){
 
     const categoryKeys = Object.keys(products);
     const categories = Object.values(products);
 
-    return <Layout signInWithPopup={signInWithPopup}>
-        
+    return <Layout>
+
+        <section className="hero-banner mb-5">
+            <div className="container">
+            <div className="row no-gutters align-items-center" style={{paddingTop: '60px'}}>
+            <div className="col-5 d-none d-sm-block">
+            <div className="hero-banner__img">
+            <img className="img-fluid" src="https://live.staticflickr.com/891/40990509380_1d179fc4a8_z.jpg" alt=""/>
+            </div>
+            </div>
+            <div className="col-sm-7 col-lg-6 offset-lg-1 ps-4 ps-md-5 ps-lg-0">
+            <div className="hero-banner__content">
+            <h4 className="fs-3">Cumpărăturile sunt distractive</h4>
+            <h1 className="fs-1 fw-bolder text-uppercase">Alegeți dintre produsele noastre de top</h1>
+            <p className="fw-light text-dark">Toate produsele noastre provin de la producători cu experiență în domeniu. Calitatea este tot ce conteaza!</p>
+            </div>
+            </div>
+            </div>
+            </div>
+        </section>
+
         <div className="container">
             <style>{`
 

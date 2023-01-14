@@ -42,7 +42,7 @@ function Header({user, signInGoogle, signInFacebook, signOut}){
                 <div className="me-auto">
                 </div>
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link className="nav-link" to="/about">
                     Despre
                   </Link>
@@ -51,7 +51,7 @@ function Header({user, signInGoogle, signInFacebook, signOut}){
                   <Link className="nav-link" to="/terms">
                     Termeni și condiții
                   </Link>
-                </li>
+                </li> */}
               </ul>
 
                 <Link to="/favorites" className='position-relative me-3 me-lg-3 d-inline-block'>

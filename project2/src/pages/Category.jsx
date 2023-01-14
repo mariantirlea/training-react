@@ -69,6 +69,8 @@ function Category(props){
         `}</style>
 
       <div className="container">
+        <h2 className="mb-3"><span className="text-capitalize" style={{borderBottom: '1px solid #0d6efd'}}>{data.name}</span></h2>
+
         <div className="row gx-2">
         {data ? data.items.map(item => <ProductItem key={item.id} category = {categoryName} product={item}></ProductItem>) : <h1>No products</h1> }
         </div>
