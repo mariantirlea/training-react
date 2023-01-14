@@ -1,6 +1,8 @@
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToCart } from "../redux/actions/product.actions";
 
-function ProductItem({category, product}){
+function ProductItem({category, product, addItemToCart}){
 
     // console.log(product);
     return <div className="col-12 col-lg-4 mb-3" style={{textAlign: 'center'}}>
@@ -20,7 +22,7 @@ function ProductItem({category, product}){
                     <div className="hero-carousel__slideOverlay">
                 
                     <button className="btn btn-outline btn-primary me-3"><i className="bi bi-heart text-light" style={{fontSize: '1.5rem'}}></i></button>
-                    <button className="btn btn-outline btn-primary"><i className="bi bi-cart3 text-light" style={{fontSize: '1.5rem'}}></i></button>
+                    <button className="btn btn-outline btn-primary" onClick={() => addItemToCart(product)}><i className="bi bi-cart3 text-light" style={{fontSize: '1.5rem'}}></i></button>
 
                     </div>
 
@@ -40,4 +42,10 @@ function ProductItem({category, product}){
 
 }
 
-export default ProductItem;
+function dispatchToProps(dispatch){
+    return {
+        addItemToCart: (product) => dispatch(addToCart(product))
+    }
+}
+
+export default connect(null, dispatchToProps)(ProductItem);

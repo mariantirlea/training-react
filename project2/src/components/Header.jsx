@@ -1,7 +1,7 @@
 import React from "react";
 import css from './Header.module.css';
 import { Link } from "react-router-dom";
-import Logo from '../assets/images/logo2.png';
+import Logo from '../assets/images/logo3.png';
 import Cart from "./CartIcon";
 import { login, logout } from "../redux/actions/user.actions";
 import { connect } from "react-redux";
