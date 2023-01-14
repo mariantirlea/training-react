@@ -9,41 +9,81 @@ import { connect } from "react-redux";
 function Header({user, signInGoogle, signInFacebook, signOut}){
     
     return (
-        <div className="border-bottom p-3 mb-5">
+      <>
+        <nav style={{backgroundColor: 'white', boxShadow: '0px 10px 27px 3px rgb(221 221 221 / 30%)'}}
+          className={
+            "navbar sticky-top navbar-expand-lg navbar-light mb-3"
+          }
 
-        <div className="container-fluid d-flex justify-content-between align-items-center">
-            <Link to="/"><img src={Logo} className={css["logo"]}/></Link>
-            {user && user.displayName}
 
-            <div className={css['actions-wrapper'] + " d-flex justify-content-between"}>
-                <Link to="/" className="">Home</Link>
-                <Link to="/about" className="">About</Link>
-        
-                {/* {this.state.loading && 'Loading...'} */}
+        >
+          <div className="container">
+            <Link className="navbar-brand" to="/">
+              <img
+                src={Logo}
+                width="100"
+                className="d-inline-block align-text-top"
+              />
+            </Link>
 
-                {user ?
-                    <button className="btn btn-link" onClick={() => signOut()}>
-                        Sign out
-                    </button>
-                    :
-                    <div>
-                        <button className="btn btn-link" onClick={() => signInGoogle()}>
-                            Sign in with Google
-                        </button>
-                        <button className="btn btn-link" onClick={() => signInFacebook()}>
-                            Sign in with Facebook
-                        </button>
-                    </div>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <i className="bi bi-list"></i>
+            </button>
 
-                    
-                }
+            <div className="collapse navbar-collapse" id="navbarNav">
+                <div className="me-auto">
+                </div>
+              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/about">
+                    Despre
+                  </Link>
+                </li>
+                <li className="nav-item ms-0 ms-lg-5">
+                  <Link className="nav-link" to="/terms">
+                    Termeni și condiții
+                  </Link>
+                </li>
+              </ul>
+
+                <Link to="/favorites" className='position-relative me-3 me-lg-3 d-inline-block'>
+                    <i className="bi bi-heart text-secondary" style={{fontSize: '1.5rem'}}></i>
+
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        0
+                    </span>
+                </Link>
+
+              <Cart />
+
+              <ul className="navbar-nav mb-2 mb-lg-0">
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {user ? user.displayName : 'Cont personal'}
+                    </a>
+                    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">                        
+                        {!user && <li><button className="dropdown-item" onClick={() => signInGoogle()}><i className="bi bi-google"></i>&nbsp;&nbsp;Continuă cu Google</button></li>}
+                        {!user && <li><button className="dropdown-item" href="#" onClick={() => signInFacebook()}><i className="bi bi-facebook"></i>&nbsp;&nbsp;Continuă cu Facebook</button></li>}
+
+                        {user && <li><button className="dropdown-item" href="#" onClick={() => signOut()}>Ieșire</button></li>}
+                    </ul>
+                </li>
+              </ul>
+
+           
             </div>
-            <Cart/>
-
-            </div>
-            
-        </div>
-    )
+          </div>
+        </nav>
+      </>
+    );
 
     
 }

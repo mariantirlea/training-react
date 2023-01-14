@@ -1,12 +1,14 @@
-import CartIconSrc from '../assets/icons/shopping-cart.svg';
 import {connect} from 'react-redux';
 import { Link } from "react-router-dom";
 
 function CartIcon({cartItemsNumber}){
     return <>
-        <Link to="/cart">
-            <img src={CartIconSrc} alt="Shopping cart"></img>
-            <p>{cartItemsNumber}</p>
+        <Link to="/cart" className='position-relative me-3 me-lg-5 d-inline-block'>
+            <i className="bi bi-cart3 text-secondary" style={{fontSize: '1.5rem'}}></i>
+
+            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                {cartItemsNumber}
+            </span>
         </Link>
     </>
 }
