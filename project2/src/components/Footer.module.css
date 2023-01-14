@@ -3,9 +3,8 @@
 }
 
 .footer-container {
-    display: flex;
-    justify-content: center;
-    border-top: 1px solid #EDE2AD;
+    text-align: center;
     color: #054F68;
-    padding: 10px;
+    background-color: #002347;
 }
+

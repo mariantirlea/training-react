@@ -10,9 +10,9 @@ function Header({user, signInGoogle, signInFacebook, signOut}){
     
     return (
       <>
-        <nav style={{backgroundColor: 'white', boxShadow: '0px 10px 27px 3px rgb(221 221 221 / 30%)'}}
+        <nav style={{backgroundColor: 'white', boxShadow: 'rgb(0 35 71 / 15%) 0px 10px 27px 3px'}}
           className={
-            "navbar sticky-top navbar-expand-lg navbar-light mb-3"
+            "navbar sticky-top navbar-expand-lg navbar-light"
           }
 
 

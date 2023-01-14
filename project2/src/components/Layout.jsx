@@ -5,7 +5,7 @@ import Footer from "./Footer";
 function Layout({children}){
     return <>
     <Header/>
-    {children}
+    <div className="pt-5 pb-4" style={{backgroundColor: '#fdfdfd'}}>{children}</div>
     <Footer/>
     </>
 }
