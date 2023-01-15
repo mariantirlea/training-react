@@ -24,6 +24,19 @@ function reducer(state = initialState, action){
                 }
             }
 
+        case ProductActions.REMOVE_FROM_CART:
+            const productToRemove = state.cartProducts.find(p => p.product.id === action.payload);
+
+            if(productToRemove){
+
+                return {
+                    ...state,
+                    cartProducts: state.cartProducts.filter((product) => product.product.id !== action.payload)
+                }
+            }else{
+                return state;
+            }
+
         default: return state;
     }
 }

@@ -1,8 +1,9 @@
 import Layout from "../../components/Layout";
 import {connect} from 'react-redux';
 import { Link } from "react-router-dom";
+import { removeFromCartById } from "../../redux/actions/product.actions";
 
-function Cart({total, currency, products}){
+function Cart({total, currency, products, removeFromCartById}){
     return <Layout>
         <div className="container">
     
@@ -27,6 +28,7 @@ function Cart({total, currency, products}){
                             <th scope="col">Preț</th>
                             <th scope="col">Cantitate</th>
                             <th scope="col">Total</th>
+                            <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,6 +38,7 @@ function Cart({total, currency, products}){
                                 <td>{p.product.price} {p.product.currency}</td>
                                 <td>{p.quantity}</td>
                                 <td>{p.product.price * p.quantity} {p.product.currency}</td>
+                                <td><button type="button" className="btn btn-outline-danger" onClick={() => removeFromCartById(p.product.id)}><i className="bi bi-trash3"></i></button></td>
                             </tr>
                         })}
                     
@@ -67,4 +70,10 @@ function mapStateToProps(store){
     }
 }
 
-export default connect(mapStateToProps)(Cart);
+function dispatchToProps(dispatch){
+    return {
+        removeFromCartById: (id) => dispatch(removeFromCartById(id))
+    }
+}
+
+export default connect(mapStateToProps, dispatchToProps)(Cart);
