@@ -11,11 +11,13 @@ import Category from "./pages/Category";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Product from "./pages/Product";
-import Cart from "./pages/Cart";
+import Cart from "./pages/cart/Cart";
+import TermsAndConditions from "./pages/terms/TermsAndConditions";
 
 import PageNotFound from "./pages/PageNotFound";
 import { initUserData } from "./redux/actions/user.actions";
 import { connect } from "react-redux";
+import Favorites from './pages/favorites/Favorites';
 
 class App extends Component {
 
@@ -31,6 +33,9 @@ class App extends Component {
         <Route path="/about" component={About}></Route>
         <Route path="/login" component={Login}></Route>
         <Route path="/cart" component={Cart}></Route>
+        <Route path="/favorites" component={Favorites}></Route>
+        <Route path="/terms" component={TermsAndConditions}></Route>
+
         <Route path="/category/:categoryName" component={Category}></Route>
         <Route path="/products/:categoryName/:productId" component={Product}></Route>
 

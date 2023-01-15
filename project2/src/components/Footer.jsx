@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Footer(){
     return <div className={"pt-5 pb-3 " + css['footer-container']} style={{boxShadow: 'rgb(0 35 71 / 15%) 0px -10px 27px 3px'}}>
-        <Link to="/about" className="text-white">Despre</Link>
+        <Link to="/about" className="text-white">Despre noi</Link>
         <Link to="/terms" className="text-white ms-3">Termeni și condiții</Link>
 
         <br/><br/>

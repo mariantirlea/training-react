@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart } from "../redux/actions/product.actions";
+import { addToFavorites } from "../redux/favorites/FavoritesActions";
 
-function ProductItem({category, product, addItemToCart}){
+function ProductItem({category, product, addItemToCart, addToFavorites}){
 
     // console.log(product);
     return <div className="col-12 col-lg-4 mb-3" style={{textAlign: 'center'}}>
@@ -21,7 +22,7 @@ function ProductItem({category, product, addItemToCart}){
                     <img src={product.image} alt="" className="img-fluid"/>
                     <div className="hero-carousel__slideOverlay">
                 
-                    <button className="btn btn-outline btn-primary me-3"><i className="bi bi-heart text-light" style={{fontSize: '1.5rem'}}></i></button>
+                    <button className="btn btn-outline btn-danger me-3" onClick={() => addToFavorites(product)}><i className="bi bi-heart text-light" style={{fontSize: '1.5rem'}}></i></button>
                     <button className="btn btn-outline btn-primary" onClick={() => addItemToCart(product)}><i className="bi bi-cart3 text-light" style={{fontSize: '1.5rem'}}></i></button>
 
                     </div>
@@ -33,7 +34,7 @@ function ProductItem({category, product, addItemToCart}){
 
             <p className="mb-1">{product.brand}</p>
             <h4 className="card-product__title">
-                <a className="" style={{textDecoration: 'none'}} href={`/products/${category}/${product.id}`}>{product.name}</a>
+                <Link className="" style={{textDecoration: 'none'}} to={`/products/${category}/${product.id}`}>{product.name}</Link>
             </h4>
 
             <p className="fw-light card-product__price">{product.price} {product.currency}</p>
@@ -44,7 +45,8 @@ function ProductItem({category, product, addItemToCart}){
 
 function dispatchToProps(dispatch){
     return {
-        addItemToCart: (product) => dispatch(addToCart(product))
+        addItemToCart: (product) => dispatch(addToCart(product)),
+        addToFavorites: (product) => dispatch(addToFavorites(product))
     }
 }
 

@@ -3,10 +3,12 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
 import productReducer from './reducers/product.reducer';
 import userReducer from './reducers/user.reducer';
+import favoritesReducer from './favorites/FavoritesReducer';
 
 const reducer = combineReducers({
     products: productReducer,
-    userState: userReducer
+    userState: userReducer,
+    favorites: favoritesReducer
 });
 
 const store = createStore(reducer, 

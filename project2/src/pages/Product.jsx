@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import products from '../utils/products.json';
 import {connect} from 'react-redux';
 import { addToCart } from "../redux/actions/product.actions";
+import { addToFavorites } from "../redux/favorites/FavoritesActions";
 
 function Product(props){
     const productId = props.match.params.productId;
@@ -10,7 +11,6 @@ function Product(props){
     const items = products[category];
 
     const product = items.items.find(p => p.id === +productId);
-    console.log(product);
 
     return <Layout>
         {product.name}
@@ -20,7 +20,8 @@ function Product(props){
 
 function dispatchToProps(dispatch){
     return {
-        addItemToCart: (product) => dispatch(addToCart(product))
+        addItemToCart: (product) => dispatch(addToCart(product)),
+        addToFavorites: (product) => dispatch(addToFavorites(product))
     }
 }
 

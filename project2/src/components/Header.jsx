@@ -5,6 +5,7 @@ import Logo from '../assets/images/logo3.png';
 import Cart from "./CartIcon";
 import { login, logout } from "../redux/actions/user.actions";
 import { connect } from "react-redux";
+import FavIcon from "./favicon/FavIcon";
 
 function Header({user, signInGoogle, signInFacebook, signOut}){
     
@@ -39,28 +40,10 @@ function Header({user, signInGoogle, signInFacebook, signOut}){
             </button>
 
             <div className="collapse navbar-collapse" id="navbarNav">
-                <div className="me-auto">
-                </div>
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                {/* <li className="nav-item">
-                  <Link className="nav-link" to="/about">
-                    Despre
-                  </Link>
-                </li>
-                <li className="nav-item ms-0 ms-lg-5">
-                  <Link className="nav-link" to="/terms">
-                    Termeni și condiții
-                  </Link>
-                </li> */}
-              </ul>
-
-                <Link to="/favorites" className='position-relative me-3 me-lg-3 d-inline-block'>
-                    <i className="bi bi-heart text-secondary" style={{fontSize: '1.5rem'}}></i>
-
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        0
-                    </span>
-                </Link>
+              <div className="me-auto">
+              </div>
+             
+              <FavIcon />
 
               <Cart />
 
