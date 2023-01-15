@@ -5,6 +5,7 @@ const initialState = {
 }
 
 function reducer(state = initialState, action){
+
     switch(action.type){
         case ProductActions.ADD_TO_CART:
             const product = state.cartProducts.find(p => p.product.id === action.payload.id);

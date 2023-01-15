@@ -34,11 +34,11 @@ function Cart({total, currency, products, removeFromCartById}){
                         <tbody>
                         {products.map((p, index) => {
                             return  <tr key={index}>
-                                <td>{p.product.name}</td>
-                                <td>{p.product.price} {p.product.currency}</td>
-                                <td>{p.quantity}</td>
-                                <td>{p.product.price * p.quantity} {p.product.currency}</td>
-                                <td><button type="button" className="btn btn-outline-danger" onClick={() => removeFromCartById(p.product.id)}><i className="bi bi-trash3"></i></button></td>
+                                <td className="align-middle"><img className="me-2" src={p.product.image} width="50" alt="" />{p.product.name}</td>
+                                <td className="align-middle">{p.product.price} {p.product.currency}</td>
+                                <td className="align-middle">{p.quantity}</td>
+                                <td className="align-middle">{p.product.price * p.quantity} {p.product.currency}</td>
+                                <td className="align-middle"><button type="button" className="btn btn-outline-danger" onClick={() => removeFromCartById(p.product.id)}><i className="bi bi-trash3"></i></button></td>
                             </tr>
                         })}
                     

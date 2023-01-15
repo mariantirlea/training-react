@@ -1,4 +1,5 @@
 
+import { connect } from "react-redux";
 import Layout from "../components/Layout";
 import ProductItem from "../components/ProductItem";
 import products from "../utils/products.json";
@@ -8,6 +9,13 @@ function Category(props){
     const categoryName = props.match.params.categoryName;
     const data = products[categoryName];
 
+    function isFavorite(id){
+
+        if(props.favorites.find((product) => product.product.id === id)){
+            return true;
+        }
+        return false;
+    }
 
     return <Layout>
         <style>{`
@@ -72,11 +80,17 @@ function Category(props){
         <h2 className="mb-3"><span className="text-capitalize" style={{borderBottom: '1px solid #0d6efd'}}>{data.name}</span></h2>
 
         <div className="row gx-2">
-        {data ? data.items.map(item => <ProductItem key={item.id} category = {categoryName} product={item}></ProductItem>) : <h1>No products</h1> }
+        {data ? data.items.map(item => <ProductItem key={item.id} category = {categoryName} product={item} isFav={isFavorite(item.id)}></ProductItem>) : <h1>No products</h1> }
         </div>
       </div>
     </Layout>
 
 }
 
-export default Category;
+function mapPropsToState(state){
+    return {
+        favorites: state.favorites.products
+    }
+}
+
+export default connect(mapPropsToState)(Category);

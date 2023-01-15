@@ -10,6 +10,9 @@ function reducer(state = initialState, action){
             const product = state.products.find(p => p.product.id === action.payload.id);
 
             if(!product){
+
+                
+
                 return {
                     ...state,
                     products: [...state.products, {product: action.payload}]

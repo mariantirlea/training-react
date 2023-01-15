@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import products from '../utils/products.json';
 import {connect} from 'react-redux';
 import { addToCart } from "../redux/actions/product.actions";
-import { addToFavorites } from "../redux/favorites/FavoritesActions";
+import { addToFavorites, removeFromFavoritesById } from "../redux/favorites/FavoritesActions";
 import { Link } from "react-router-dom";
 
 function Product(props){
@@ -12,6 +12,7 @@ function Product(props){
     const items = products[category];
 
     const product = items.items.find(p => p.id === +productId);
+    const isFav = props.favorites.find((product) => product.product.id === productId) === true;
 
     return <Layout>
         <div className="container">
@@ -36,9 +37,10 @@ function Product(props){
                         <li><span>Material</span> : {product.material}</li>
                     </ul>
 
+                    {props.isFavorite(product.id, props.favorites) ? <button className="btn btn-outline btn-danger me-3" onClick={() => props.removeFromFavoritesById(product.id)}><i className="bi bi-heart-fill text-light" style={{fontSize: '1.5rem'}}></i> Adăugat la favorite</button>
+                    : <button className="btn btn-danger me-3" onClick={() => props.addToFavorites(product)}><i className="bi bi-heart text-light" style={{fontSize: '1.5rem'}}></i> Adaugă la favorite</button>}
 
 
-                    <button className="btn btn-outline btn-danger me-3" onClick={() => props.addToFavorites(product)}><i className="bi bi-heart text-light" style={{fontSize: '1.5rem'}}></i></button>
                     <button className="btn btn-outline btn-primary" onClick={() => props.addItemToCart(product)}><i className="bi bi-cart3 text-light" style={{fontSize: '1.5rem'}}></i> Adaugă în coș</button>
 
                 </div>
@@ -48,11 +50,24 @@ function Product(props){
     </Layout>
 }
 
-function dispatchToProps(dispatch){
+function mapPropsToState(state){
     return {
-        addItemToCart: (product) => dispatch(addToCart(product)),
-        addToFavorites: (product) => dispatch(addToFavorites(product))
+        favorites: state.favorites.products
     }
 }
 
-export default connect(null, dispatchToProps)(Product);
+function dispatchToProps(dispatch){
+    return {
+        addItemToCart: (product) => dispatch(addToCart(product)),
+        addToFavorites: (product) => dispatch(addToFavorites(product)),
+        removeFromFavoritesById: (id) => dispatch(removeFromFavoritesById(id)),
+        isFavorite: (id, favorites) => {
+            if(favorites.find((product) => product.product.id === id)){
+                return true;
+            }
+            return false;
+        }
+    }
+}
+
+export default connect(mapPropsToState, dispatchToProps)(Product);
