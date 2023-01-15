@@ -1,7 +1,7 @@
 import React from "react";
 import HomeCategory from "../components/HomeCategory";
 import Layout from "../components/Layout";
-
+import HomePic from "../assets/images/pexels-angela-roma-7319306.jpg"
 import products from "../utils/products.json";
 
 function Home(props){
@@ -16,7 +16,7 @@ function Home(props){
             <div className="row no-gutters align-items-center" style={{paddingTop: '60px'}}>
             <div className="col-5 d-none d-sm-block">
             <div className="hero-banner__img">
-            <img className="img-fluid" src="https://live.staticflickr.com/891/40990509380_1d179fc4a8_z.jpg" alt=""/>
+            <img className="img-fluid" src={HomePic} alt=""/>
             </div>
             </div>
             <div className="col-sm-7 col-lg-6 offset-lg-1 ps-4 ps-md-5 ps-lg-0">

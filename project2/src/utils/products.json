@@ -39,7 +39,7 @@
                 "description": "Ghete maro din piele, din colecția de toamnă-iarnă 2017, Massimo Dutti."
             }
         ],
-        "image": "https://i.imgur.com/X0qldXO.jpg",
+        "image": "https://images.pexels.com/photos/267320/pexels-photo-267320.jpeg",
         "name": "Încălțăminte",
         "description": "Ghete, pantofi, sneakerși: finețe garantată!"
     },
@@ -95,7 +95,7 @@
                 "description": "Pulovăr din lână cu model, colecția toamnă-iarnă 2019, Massimo Dutti."
             }
         ],
-        "image": "https://i.imgur.com/SZU7liE.jpg",
+        "image": "https://images.pexels.com/photos/5710043/pexels-photo-5710043.jpeg?auto=compress&cs=tinysrgb&w=900",
         "name": "Pulovere",
         "description": "Pulovărașe elegănțele, slim, clasă superioară."
     },
@@ -127,7 +127,7 @@
                 "description": "Blugi negri, slim fit, colecția toamnă-iarnă 2019, DS Damat."
             }
         ],
-        "image": "https://i.imgur.com/srQCDRN.jpg",
+        "image": "https://images.pexels.com/photos/2129970/pexels-photo-2129970.jpeg?auto=compress&cs=tinysrgb&w=900",
         "name": "Pantaloni/blugi",
         "description": "Jeanși și pantaloni pentru baieții care și-o ard patroni!"
     },
@@ -159,7 +159,7 @@
                 "description": "Geacă bleumarin cu glugă detașabilă, colecția toamnă-iarnă 2019, DS Damat."
             }
         ],
-        "image": "https://i.imgur.com/81I6Oab.jpg",
+        "image": "https://images.pexels.com/photos/16170/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=900",
         "name": "Geci/Haine",
         "description": "Confortabile, călduroase și nu arăți ca un cartof!"
     },
@@ -233,9 +233,21 @@
                 "material": "Piele",
                 "brand": "DS Damat",
                 "description": "Mănuși din piele, cu model, din colecția toamnă-iarnă 2018, DS Damat."
+            },
+            {
+                "id": 17,
+                "name": "Ochelari Gucci negri",
+                "price": 750,
+                "currency": "LEI",
+                "image": "https://images.pexels.com/photos/9982581/pexels-photo-9982581.jpeg?auto=compress&cs=tinysrgb&w=900",
+                "size": "Universal",
+                "colour": "Negru",
+                "material": "Plastic",
+                "brand": "Gucci",
+                "description": "Ochelari moderni din editia primavara 2023. Editie limitata."
             }
         ],
-        "image": "https://i.imgur.com/qw3wDj8.jpg",
+        "image": "https://images.pexels.com/photos/322207/pexels-photo-322207.jpeg?auto=compress&cs=tinysrgb&w=900",
         "name": "Accesorii",
         "description": "Fulare, căciuli, mănuși: nu mai sta pe gânduri, cumpără-le acuși!"
     }
