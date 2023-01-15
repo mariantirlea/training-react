@@ -9,19 +9,26 @@ function reducer(state = initialState, action){
         case FavoritesConstants.ADD:
             const product = state.products.find(p => p.product.id === action.payload.id);
 
-            if(product){
-                const otherProducts = state.products.filter(p => p.product.id !== action.payload.id);
-                const updatedProduct = {...product, quantity: product.quantity + 1};
-    
+            if(!product){
                 return {
                     ...state,
-                    products: [...otherProducts, updatedProduct]
+                    products: [...state.products, {product: action.payload}]
                 }
             }else{
+                return state;
+            }
+            
+        case FavoritesConstants.REMOVE:
+            const productToRemove = state.products.find(p => p.product.id === action.payload);
+
+            if(productToRemove){
+
                 return {
                     ...state,
-                    products: [...state.products, {product: action.payload, quantity: 1}]
+                    products: state.products.filter((product) => product.product.id !== action.payload)
                 }
+            }else{
+                return state;
             }
 
         default: return state;

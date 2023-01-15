@@ -2,8 +2,9 @@ import Layout from "../../components/Layout";
 import {connect} from 'react-redux';
 import css from './Favorites.module.css';
 import { Link } from "react-router-dom";
+import { removeFromFavoritesById } from "../../redux/favorites/FavoritesActions";
 
-function Favorites({total, currency, products}){
+function Favorites({products, removeFromFavoritesById}){
 
     return <Layout>
         <div className="container">
@@ -27,24 +28,21 @@ function Favorites({total, currency, products}){
                             <tr>
                             <th scope="col">Produs</th>
                             <th scope="col">Preț</th>
-                            <th scope="col">Cantitate</th>
-                            <th scope="col">Total</th>
+                            <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                         {products.map((p, index) => {
                             return  <tr key={index}>
-                                <td>{p.product.name}</td>
-                                <td>{p.product.price} {p.product.currency}</td>
-                                <td>{p.quantity}</td>
-                                <td>{p.product.price * p.quantity} {p.product.currency}</td>
+                                <td className="align-middle">{p.product.name}</td>
+                                <td className="align-middle">{p.product.price} {p.product.currency}</td>
+                                <td><button type="button" className="btn btn-outline-danger" onClick={() => removeFromFavoritesById(p.product.id)}><i className="bi bi-trash3"></i></button></td>
                             </tr>
                         })}
                     
                         </tbody>
                     </table>
 
-                    <h3 className="text-end">Total <span>{total} {currency}</span></h3>
                 </div>
             }
         
@@ -55,18 +53,15 @@ function Favorites({total, currency, products}){
 
 function mapStateToProps(store){
 
-    let total = 0;
-    
-    store.favorites.products.forEach(product => {
-        total += product.product.price * product.quantity;
-    })
-
-    const currency = store.favorites.products.length !== 0 ? store.favorites.products[0].product.currency : '';
-
     return {
-        total, currency,
         products: store.favorites.products
     }
 }
 
-export default connect(mapStateToProps)(Favorites);
+function dispatchToProps(dispatch){
+    return {
+        removeFromFavoritesById: (id) => dispatch(removeFromFavoritesById(id))
+    }
+}
+
+export default connect(mapStateToProps, dispatchToProps)(Favorites);

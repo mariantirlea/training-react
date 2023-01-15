@@ -6,3 +6,10 @@ export function addToFavorites(product){
         payload: product
     }
 }
+
+export function removeFromFavoritesById(id){
+    return {
+        type: FavoritesConstants.REMOVE,
+        payload: id
+    }
+}

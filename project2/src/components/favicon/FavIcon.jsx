@@ -13,10 +13,7 @@ function FavIcon({total}){
 }
 
 function mapStateToProps(store){
-    let total = 0;
-    store.favorites.products.forEach(p => total += p.quantity);
-
-    return {total}
+    return {total: store.favorites.products.length}
 }
 
 export default connect(mapStateToProps)(FavIcon);
