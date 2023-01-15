@@ -1,7 +1,7 @@
 import React from "react";
 import css from './Header.module.css';
 import { Link } from "react-router-dom";
-import Logo from '../assets/images/logo3.png';
+import Logo from '../assets/images/logo-no-background.png';
 import Cart from "./CartIcon";
 import { login, logout } from "../redux/actions/user.actions";
 import { connect } from "react-redux";
@@ -22,7 +22,7 @@ function Header({user, signInGoogle, signInFacebook, signOut}){
             <Link className="navbar-brand" to="/">
               <img
                 src={Logo}
-                width="100"
+                width="175"
                 className="d-inline-block align-text-top"
               />
             </Link>
